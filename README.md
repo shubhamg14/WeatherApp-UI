@@ -5,6 +5,10 @@ This implementation of an UI follows a dynamic approach that uses asynchronous J
 
 This Webpage takes an input date and then plot the Forecasts TMIN, TMAX for next five days.
 
+This UI has been implemented using Javascript for Asynchronus call, so that whenever value gets updated, page does not refresh.
+For HTML part Bootstrap 4 CSS has been used to implement layout and Navbars.
+CanvasJS has been used to populate graphs for weather forecasts.
+
 ## The UI has the following functionality:
 
 **_Historical_** - Enter a date from 1st January'2013 - 28th March'2019 and you will get the minimum and maximum temperature for that day.
