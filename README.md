@@ -11,25 +11,25 @@ This Webpage takes an input date and then plot the Forecasts TMIN, TMAX for next
 
 Date is required in a YYYYMMDD format and then when you click submit button,you will get Maximum and Minimum temperature for that day
 
-   ![alt text](https://github.com/shubhamg14/WeatherApp-UI/tree/master/images/historical_empty.PNG)
+   ![alt text](https://github.com/shubhamg14/WeatherApp-UI/blob/master/images/historical_empty.PNG)
 
-   ![alt text](https://github.com/shubhamg14/WeatherApp-UI/tree/master/images/historical_populated.PNG)
+   ![alt text](https://github.com/shubhamg14/WeatherApp-UI/blob/master/images/historical_populated.PNG)
 
 **_Forecast_** - Enter any existing and future date and you will get a weather forecast in a table format as well as a line graph.
 The Forecast may not be accurate as it is calculated by taking the running average of temeperature for past 365 days.
 
 Date is required in a YYYYMMDD format and then when you click submit button,you will get Forecast for next 7 days
 
-  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/tree/master/images/forecast_empty.PNG)
+  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/blob/master/images/forecast_empty.PNG)
   
-  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/tree/master/images/forecast_populated.PNG)
+  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/blob/master/images/forecast_populated.PNG)
 
 **_OpenWeather_** - This page displays the weather forecast for next 5 days which is fetched from a third party API (Openweathemap.com).
 This page outputs the forecast in a table format as well as graph.
 
 This page outputs forecast for next 5 days 
 
-  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/tree/master/images/openweather_populated.PNG)
+  ![alt text](https://github.com/shubhamg14/WeatherApp-UI/blob/master/images/openweather_populated.PNG)
 
 ## Following packages are required to run this code base:
 
