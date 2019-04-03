@@ -5,9 +5,11 @@ This implementation of an UI follows a dynamic approach that uses asynchronous J
 
 This Webpage takes an input date and then plot the Forecasts TMIN, TMAX for next five days.
 
-This UI has been implemented using Javascript for Asynchronus call, so that whenever value gets updated, page does not refresh.
-For HTML part Bootstrap 4 CSS has been used to implement layout and Navbars.
-CanvasJS has been used to populate graphs for weather forecasts.
+## UI overview
+
+        1. This UI has been implemented using Javascript for Asynchronus call, so that whenever value gets updated, page does not                  refresh.
+        2. For HTML part Bootstrap 4 CSS has been used to implement layout and Navbars.
+        3. CanvasJS has been used to populate graphs for weather forecasts.
 
 ## The UI has the following functionality:
 
@@ -45,11 +47,11 @@ This page outputs forecast for next 5 days
     
  ## Running Code
  
-        1. First create a project directory in your local machine and then pull the flaskapp.py and templates folder from this                      repository into your project folder.
+        1. First create a project directory in your local machine and then pull the flaskapp.py and templates folder from this repository into your project folder.
         2. Install following packages (Steps can be found at @https://github.com/shubhamg14/WeatherApp-API
             Python (sudo apt install python)
             pip 19.0.3 (sudo apt install python-pip)
             Flask 1.0.2 (sudo pip install flask)
             requests 2.21.0 (sudo pip install requests)
-        3. Run python3 flaskapp.py in your command prompt and the application will go live on your localmachine at                                  "http://127.0.0.1:5000/"          
+        3. Run python3 flaskapp.py in your command prompt and the application will go live on your localmachine at "http://127.0.0.1:5000/"          
 
