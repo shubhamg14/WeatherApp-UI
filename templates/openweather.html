@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h6>Predicted weather for next 5 days (Courtsey: Openweathermap.com)</h6>
+    <table class="table" id="temperatureTable">
+
+    </table>
+</div>
+
+<script>
+
+    function getHistoricalInfo() {
+
+        const Http = new XMLHttpRequest();
+        const url = "/openweather/";
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+            if (Http.status !== 200) {
+                return;
+            }
+
+            if (Http.responseText === "") {
+                return
+            }
+
+            const response = Http.responseText;
+            const temperatureDate = JSON.parse(response);
+
+            let table = document.getElementById("temperatureTable");
+            table.innerText = "";
+
+            let minChartData = [];
+            let maxChartData = [];
+
+            for (let i = 0; i < temperatureDate.length; i++) {
+                let info = temperatureDate[i];
+                let row = table.insertRow(i);
+                row.insertCell(0).innerHTML = info["DATE"];
+                row.insertCell(1).innerHTML = parseFloat(info["TMAX"]).toFixed(2);
+                row.insertCell(2).innerHTML = parseFloat(info["TMIN"]).toFixed(2);
+
+                minChartData.push({y: Number(parseFloat(info["TMIN"]).toFixed(2)), label: info["DATE"]});
+                maxChartData.push({y: Number(parseFloat(info["TMAX"]).toFixed(2)), label: info["DATE"]});
+            }
+
+            drawChat(minChartData, maxChartData);
+        }
+    }
+
+    getHistoricalInfo();
+</script>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+    function drawChat(minChartData, maxChartData) {
+        let chart = new CanvasJS.Chart
+        ("chartContainer",
+            {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Weather forecast"
+                },
+                axisX:
+                    {
+                        valueFormatString: "DD MMM",
+                        crosshair:
+                            {
+                                enabled: true,
+                                snapToDataPoint: true
+                            }
+                    },
+                axisY:
+                    {
+                        title: "Temperature",
+                        crosshair:
+                            {
+                                enabled: true
+                            }
+                    },
+                data:
+                    [
+
+                        {
+                            type: "line",
+                            showInLegend: true,
+                            name: "Minimum Temperature",
+                            markerType: "square",
+                            xValueFormatString: "DD MMM, YYYY",
+                            color: "#F08080",
+                            dataPoints:
+                            minChartData
+                        },
+                        {
+                            type: "line",
+                            showInLegend: true,
+                            name: "Maximum Temperature",
+                            lineDashType: "dash",
+                            color: "#5ef03e",
+                            dataPoints:
+                            maxChartData
+                        }
+                    ]
+            }
+        );
+
+        chart.render();
+    }
+</script>
+
+<div id="chartContainer" class="container mt-5" style="height: 370px; width: 100%;"></div>
+
+
+{% endblock content %}

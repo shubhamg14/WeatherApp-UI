@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="form-group">
+            <input type="text" class="form-control" id="dateInput" placeholder="YYYYMMDD">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="deleteHistoricalInfo()">Submit</button>
+    </div>
+
+    <script>
+        function deleteHistoricalInfo() {
+            const dateInput = document.getElementById("dateInput").value;
+
+            const Http = new XMLHttpRequest();
+            const url= "/historical/" + dateInput + "/";
+
+            Http.open("DELETE", url);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                if(Http.status !== 202) {
+                    alert("Something went wrong with error code :" + Http.status);
+                    return;
+                }
+
+                alert("Data Successfully deleted!!!");
+            }
+        }
+    </script>
+{% endblock content %}

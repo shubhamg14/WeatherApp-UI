@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="form-group">
+            <input type="text" class="form-control" id="dateInput" placeholder="YYYYMMDD">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" id="minInput" placeholder="20.0">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" id="maxInput" placeholder="50.0">
+        </div>
+        <button type="button" class="btn btn-primary" onclick="saveHistoricalInfo()">Submit</button>
+    </div>
+
+    <script>
+        function saveHistoricalInfo() {
+            const dateInput = document.getElementById("dateInput").value;
+            const minInput = document.getElementById("minInput").value;
+            const maxInput = document.getElementById("maxInput").value;
+
+            const body = {
+                "DATE":dateInput,
+                "TMIN": minInput,
+                "TMAX": maxInput
+            };
+
+            const bodyString = JSON.stringify(body);
+
+            const Http = new XMLHttpRequest();
+            const url= "/historical/";
+
+            Http.open("POST", url);
+            Http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            Http.send(bodyString);
+
+            Http.onreadystatechange = (e) => {
+                if(Http.status !== 201) {
+                    alert("Something went wrong with error code: " + Http.status);
+                    return;
+                }
+
+                alert("Data Successfully inserted!!!");
+            }
+        }
+    </script>
+{% endblock content %}

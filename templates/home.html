@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="form-group">
+            <input type="text" class="form-control" id="dateInput" placeholder="YYYYMMDD">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="getHistoricalInfo()">Submit</button>
+
+        <div class="card mt-5" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title" id="dateTitle"> </h5>
+                <p class="card-text" id="minTemperature"></p>
+                <p class="card-text" id="maxTemperature"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function getHistoricalInfo() {
+            const date = document.getElementById("dateInput").value;
+
+            const Http = new XMLHttpRequest();
+            const url= "/historical/"+date;
+            Http.open("GET", url);
+            Http.send();
+
+            Http.onreadystatechange=(e)=>{
+                if(Http.status !== 200) {
+                    document.getElementById("dateTitle").innerHTML = "Something with wrong with error code: " + Http.status;
+                    document.getElementById("minTemperature").innerHTML = "";
+                    document.getElementById("maxTemperature").innerHTML = "";
+                    return;
+                }
+
+                const temperatureDate = JSON.parse(String(Http.responseText));
+
+                document.getElementById("dateTitle").innerHTML = "Date: " + temperatureDate["DATE"];
+                document.getElementById("minTemperature").innerHTML = "Minimum Temperature: " + temperatureDate["TMIN"];
+                document.getElementById("maxTemperature").innerHTML = "Maximum Temperature: " + temperatureDate["TMAX"];
+            }
+        }
+
+    </script>
+{% endblock content %}
